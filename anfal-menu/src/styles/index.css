@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-dark:   #0A2E12;
+    --brand-accent: #C6FF00;
+    --text-primary: #F5F2EC;
+    --text-muted:   #A8B8A0;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply bg-brand-dark text-[#F5F2EC] font-body antialiased;
+  }
+
+  /* Custom scrollbar — premium feel */
+  ::-webkit-scrollbar        { width: 4px; }
+  ::-webkit-scrollbar-track  { background: transparent; }
+  ::-webkit-scrollbar-thumb  { background: #C6FF0040; border-radius: 2px; }
+}
+
+@layer components {
+  .section-container {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Lime accent underline used on headings */
+  .accent-underline {
+    @apply relative after:absolute after:bottom-0 after:left-0
+           after:h-[2px] after:w-12 after:bg-brand-accent;
+  }
+}
