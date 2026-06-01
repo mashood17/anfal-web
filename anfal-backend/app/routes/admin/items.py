@@ -1,7 +1,7 @@
 from flask              import Blueprint, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from app.extensions     import db
-from app.models         import MenuItem, ItemPrice
+from app.models         import MenuItem, ItemPrice, AdminUser
 from app.utils.response import success, error
 import uuid
 
@@ -9,14 +9,19 @@ bp = Blueprint('admin_items', __name__, url_prefix='/api/admin/items')
 
 
 def get_restaurant_id():
-    return get_jwt_identity().get('restaurant_id')
+    user_id = get_jwt_identity()
+    user    = AdminUser.query.get(user_id)
+    return user.restaurant_id if user else None
 
 
 @bp.route('', methods=['GET'])
 @jwt_required()
 def list_items():
+    rid = get_restaurant_id()
+    if not rid:
+        return error('Unauthorized', 401)
     items = (MenuItem.query
-             .filter_by(restaurant_id=get_restaurant_id())
+             .filter_by(restaurant_id=rid)
              .order_by(MenuItem.sort_order)
              .all())
     return success([i.to_dict() for i in items])
@@ -25,12 +30,13 @@ def list_items():
 @bp.route('', methods=['POST'])
 @jwt_required()
 def create_item():
+    rid    = get_restaurant_id()
     body   = request.get_json()
     prices = body.pop('prices', [])
 
     item = MenuItem(
         id=str(uuid.uuid4()),
-        restaurant_id=get_restaurant_id(),
+        restaurant_id=rid,
         category_id=body['category_id'],
         name=body['name'],
         description=body.get('description'),
@@ -57,9 +63,8 @@ def create_item():
 @bp.route('/<item_id>', methods=['PUT'])
 @jwt_required()
 def update_item(item_id):
-    item = MenuItem.query.filter_by(
-        id=item_id, restaurant_id=get_restaurant_id()
-    ).first_or_404()
+    rid    = get_restaurant_id()
+    item   = MenuItem.query.filter_by(id=item_id, restaurant_id=rid).first_or_404()
     body   = request.get_json()
     prices = body.pop('prices', None)
 
@@ -90,9 +95,8 @@ def update_item(item_id):
 @bp.route('/<item_id>', methods=['DELETE'])
 @jwt_required()
 def delete_item(item_id):
-    item = MenuItem.query.filter_by(
-        id=item_id, restaurant_id=get_restaurant_id()
-    ).first_or_404()
+    rid  = get_restaurant_id()
+    item = MenuItem.query.filter_by(id=item_id, restaurant_id=rid).first_or_404()
     db.session.delete(item)
     db.session.commit()
     return success({ 'deleted': item_id })

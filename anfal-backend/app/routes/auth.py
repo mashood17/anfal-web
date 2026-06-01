@@ -1,7 +1,7 @@
-from flask            import Blueprint, request
+from flask              import Blueprint, request
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
-from app.models       import AdminUser
-from app.extensions   import db
+from app.models         import AdminUser, Restaurant
+from app.extensions     import db
 from app.utils.response import success, error
 import os
 
@@ -21,14 +21,8 @@ def login():
     if not user or not user.check_password(password):
         return error('Invalid email or password', 401)
 
-    token = create_access_token(
-        identity=str(user.id),
-        additional_claims={
-            'email': user.email,
-            'role': user.role,
-            'restaurant_id': user.restaurant_id,
-        }
-    )
+    # Store only the user ID string as identity — simple and safe
+    token = create_access_token(identity=user.id)
 
     return success({ 'token': token, 'user': user.to_dict() })
 
@@ -36,11 +30,13 @@ def login():
 @bp.route('/me', methods=['GET'])
 @jwt_required()
 def me():
-    identity = get_jwt_identity()
-    return success(identity)
+    user_id = get_jwt_identity()
+    user    = AdminUser.query.get(user_id)
+    if not user:
+        return error('User not found', 404)
+    return success(user.to_dict())
 
 
-# One-time seed endpoint — remove after first use in production
 @bp.route('/seed-admin', methods=['POST'])
 def seed_admin():
     email    = os.getenv('ADMIN_EMAIL')
@@ -49,10 +45,7 @@ def seed_admin():
     if AdminUser.query.filter_by(email=email).first():
         return error('Admin already exists', 400)
 
-    # Get Anfal restaurant id
-    from app.models import Restaurant
     restaurant = Restaurant.query.filter_by(slug='anfal').first()
-
     user = AdminUser(
         email=email,
         restaurant_id=restaurant.id if restaurant else None,

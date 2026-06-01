@@ -14,22 +14,20 @@ function ProtectedRoute({ children }) {
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/login" element={<LoginPage />} />
-      <Route
-        path="/"
-        element={
-          <ProtectedRoute>
-            <AdminLayout />
-          </ProtectedRoute>
-        }
-      >
-        <Route index           element={<DashboardPage />} />
-        <Route path="categories" element={<CategoriesPage />} />
-        <Route path="items"      element={<ItemsPage />} />
-        <Route path="branding"   element={<BrandingPage />} />
-      </Route>
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+    <div className="min-h-screen bg-gray-950 text-gray-100">
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route
+          path="/*"
+          element={
+            <ProtectedRoute>
+              <AdminLayout />
+            </ProtectedRoute>
+          }
+        >
+        </Route>
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </div>
   )
 }

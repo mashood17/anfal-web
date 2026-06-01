@@ -19,9 +19,6 @@ export default {
         display: ['"Playfair Display"', 'Georgia', 'serif'],
         body:    ['Inter', 'system-ui', 'sans-serif'],
       },
-      screens: {
-        xs: '380px',
-      },
     },
   },
   plugins: [],

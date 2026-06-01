@@ -26,48 +26,89 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-950 flex items-center justify-center px-4">
-      <div className="w-full max-w-sm">
-        <div className="text-center mb-8">
-          <p className="text-xs text-gray-500 uppercase tracking-widest">Admin</p>
-          <h1 className="text-2xl font-semibold text-white mt-1">Anfal Restaurant</h1>
+    <div style={{
+      minHeight: '100vh',
+      backgroundColor: '#030712',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '16px',
+    }}>
+      <div style={{ width: '100%', maxWidth: '360px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+          <p style={{ fontSize: '11px', color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.15em' }}>
+            Admin
+          </p>
+          <h1 style={{ fontSize: '24px', fontWeight: 600, color: '#f9fafb', marginTop: '4px' }}>
+            Anfal Restaurant
+          </h1>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           <div>
-            <label className="block text-xs text-gray-400 mb-1.5">Email</label>
+            <label style={{ display: 'block', fontSize: '12px', color: '#9ca3af', marginBottom: '6px' }}>
+              Email
+            </label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2.5
-                         text-sm text-white placeholder-gray-500
-                         focus:outline-none focus:border-brand-accent/60 transition-colors"
               placeholder="admin@anfal.com"
+              style={{
+                width: '100%',
+                backgroundColor: '#111827',
+                border: '1px solid #374151',
+                borderRadius: '8px',
+                padding: '10px 12px',
+                fontSize: '14px',
+                color: '#f9fafb',
+                outline: 'none',
+                boxSizing: 'border-box',
+              }}
             />
           </div>
 
           <div>
-            <label className="block text-xs text-gray-400 mb-1.5">Password</label>
+            <label style={{ display: 'block', fontSize: '12px', color: '#9ca3af', marginBottom: '6px' }}>
+              Password
+            </label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2.5
-                         text-sm text-white placeholder-gray-500
-                         focus:outline-none focus:border-brand-accent/60 transition-colors"
               placeholder="••••••••"
+              style={{
+                width: '100%',
+                backgroundColor: '#111827',
+                border: '1px solid #374151',
+                borderRadius: '8px',
+                padding: '10px 12px',
+                fontSize: '14px',
+                color: '#f9fafb',
+                outline: 'none',
+                boxSizing: 'border-box',
+              }}
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-brand-accent text-gray-950 font-semibold text-sm
-                       py-2.5 rounded-lg hover:bg-brand-accent/90 transition-colors
-                       disabled:opacity-50 disabled:cursor-not-allowed mt-2"
+            style={{
+              width: '100%',
+              backgroundColor: '#C6FF00',
+              color: '#030712',
+              fontWeight: 700,
+              fontSize: '14px',
+              padding: '11px',
+              borderRadius: '8px',
+              border: 'none',
+              cursor: loading ? 'not-allowed' : 'pointer',
+              opacity: loading ? 0.6 : 1,
+              marginTop: '4px',
+            }}
           >
             {loading ? 'Signing in...' : 'Sign In'}
           </button>

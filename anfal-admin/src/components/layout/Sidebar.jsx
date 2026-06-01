@@ -1,13 +1,40 @@
 import { NavLink, useNavigate } from 'react-router-dom'
-import { LayoutDashboard, ListOrdered, UtensilsCrossed, Palette, LogOut } from 'lucide-react'
 import useAuthStore from '@/store/authStore'
 
 const NAV = [
-  { to: '/',           label: 'Dashboard',  icon: LayoutDashboard, end: true },
-  { to: '/categories', label: 'Categories', icon: ListOrdered },
-  { to: '/items',      label: 'Menu Items', icon: UtensilsCrossed },
-  { to: '/branding',   label: 'Branding',   icon: Palette },
+  { to: '/',            label: 'Dashboard',   end: true },
+  { to: '/categories',  label: 'Categories'              },
+  { to: '/items',       label: 'Menu Items'              },
+  { to: '/branding',    label: 'Branding'                },
 ]
+
+const sidebarStyle = {
+  width: '220px',
+  minHeight: '100vh',
+  backgroundColor: '#111827',
+  borderRight: '1px solid #1f2937',
+  display: 'flex',
+  flexDirection: 'column',
+  flexShrink: 0,
+}
+
+const logoAreaStyle = {
+  padding: '24px 20px',
+  borderBottom: '1px solid #1f2937',
+}
+
+const navStyle = {
+  flex: 1,
+  padding: '12px',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '2px',
+}
+
+const footerStyle = {
+  padding: '16px',
+  borderTop: '1px solid #1f2937',
+}
 
 export default function Sidebar() {
   const logout   = useAuthStore((s) => s.logout)
@@ -17,43 +44,58 @@ export default function Sidebar() {
   const handleLogout = () => { logout(); navigate('/login') }
 
   return (
-    <aside className="w-56 shrink-0 flex flex-col bg-gray-900 border-r border-gray-800">
-      {/* Logo */}
-      <div className="px-5 py-6 border-b border-gray-800">
-        <p className="text-xs text-gray-500 uppercase tracking-widest">Admin Panel</p>
-        <p className="text-white font-semibold mt-0.5">Anfal Restaurant</p>
+    <aside style={sidebarStyle}>
+      <div style={logoAreaStyle}>
+        <p style={{ fontSize: '11px', color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+          Admin Panel
+        </p>
+        <p style={{ color: '#f9fafb', fontWeight: 600, marginTop: '4px' }}>
+          Anfal Restaurant
+        </p>
       </div>
 
-      {/* Nav */}
-      <nav className="flex-1 px-3 py-4 space-y-0.5">
-        {NAV.map(({ to, label, icon: Icon, end }) => (
+      <nav style={navStyle}>
+        {NAV.map(({ to, label, end }) => (
           <NavLink
             key={to}
             to={to}
             end={end}
-            className={({ isActive }) =>
-              `flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${
-                isActive
-                  ? 'bg-brand-accent/10 text-brand-accent font-medium'
-                  : 'text-gray-400 hover:text-white hover:bg-gray-800'
-              }`
-            }
+            style={({ isActive }) => ({
+              display: 'block',
+              padding: '8px 12px',
+              borderRadius: '8px',
+              fontSize: '14px',
+              textDecoration: 'none',
+              transition: 'all 0.15s',
+              backgroundColor: isActive ? 'rgba(198,255,0,0.1)' : 'transparent',
+              color: isActive ? '#C6FF00' : '#9ca3af',
+              fontWeight: isActive ? 500 : 400,
+            })}
           >
-            <Icon size={16} />
             {label}
           </NavLink>
         ))}
       </nav>
 
-      {/* User + logout */}
-      <div className="px-4 py-4 border-t border-gray-800">
-        <p className="text-xs text-gray-500 truncate">{user?.email}</p>
+      <div style={footerStyle}>
+        <p style={{ fontSize: '12px', color: '#6b7280', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+          {user?.email}
+        </p>
         <button
           onClick={handleLogout}
-          className="flex items-center gap-2 mt-2 text-xs text-gray-500 
-                     hover:text-red-400 transition-colors"
+          style={{
+            marginTop: '8px',
+            fontSize: '12px',
+            color: '#6b7280',
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+            padding: 0,
+          }}
+          onMouseOver={(e) => e.target.style.color = '#f87171'}
+          onMouseOut={(e) => e.target.style.color = '#6b7280'}
         >
-          <LogOut size={13} /> Sign out
+          Sign out
         </button>
       </div>
     </aside>
