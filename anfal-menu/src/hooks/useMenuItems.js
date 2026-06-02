@@ -5,7 +5,7 @@ export function useMenuItems(restaurantId) {
   return useQuery({
     queryKey:  ['items', restaurantId],
     queryFn:   () => getMenuItems(restaurantId),
-    staleTime: 1000 * 30,    // 30 sec — live menu updates
+    staleTime: 1000 * 60 * 2,   // 2 min
     enabled:   !!restaurantId,
   })
 }

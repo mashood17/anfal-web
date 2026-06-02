@@ -1,20 +1,21 @@
-import { useCallback } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
 import useMenuStore from '@/store/menuStore'
 
-// Install: npm install use-debounce
 export default function SearchBar() {
   const setSearchQuery = useMenuStore((s) => s.setSearchQuery)
   const searchQuery    = useMenuStore((s) => s.searchQuery)
 
-  const debounced = useDebouncedCallback((value) => {
-    setSearchQuery(value)
-  }, 250)
+  const debounced = useDebouncedCallback((v) => setSearchQuery(v), 250)
 
   return (
-    <div className="relative py-2">
+    <div style={{ position: 'relative', paddingBottom: '2px' }}>
       <svg
-        className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30 pointer-events-none"
+        style={{
+          position: 'absolute', left: '12px',
+          top: '50%', transform: 'translateY(-50%)',
+          width: '14px', height: '14px',
+          color: 'var(--text-faint)', pointerEvents: 'none',
+        }}
         fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
       >
         <path strokeLinecap="round" strokeLinejoin="round"
@@ -23,24 +24,32 @@ export default function SearchBar() {
 
       <input
         type="search"
-        placeholder="Search menu..."
+        placeholder="Search dishes..."
         onChange={(e) => debounced(e.target.value)}
-        className="w-full bg-white/5 border border-white/10 rounded-full
-                   pl-9 pr-4 py-2 text-sm text-white placeholder-white/30
-                   focus:outline-none focus:border-brand-accent/50
-                   transition-colors"
-        aria-label="Search menu items"
+        style={{
+          width: '100%',
+          backgroundColor: 'rgba(255,255,255,0.04)',
+          border: '1px solid rgba(198,255,0,0.1)',
+          borderRadius: '8px',
+          padding: '8px 36px',
+          fontSize: '13px',
+          color: 'var(--text-primary)',
+          outline: 'none',
+          fontFamily: 'Inter, sans-serif',
+        }}
       />
 
       {searchQuery && (
         <button
           onClick={() => { setSearchQuery(''); debounced.cancel() }}
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 
-                     hover:text-white/60 transition-colors text-lg leading-none"
-          aria-label="Clear search"
-        >
-          ×
-        </button>
+          style={{
+            position: 'absolute', right: '10px',
+            top: '50%', transform: 'translateY(-50%)',
+            color: 'var(--text-faint)', background: 'none',
+            border: 'none', cursor: 'pointer', fontSize: '16px',
+            lineHeight: 1,
+          }}
+        >×</button>
       )}
     </div>
   )

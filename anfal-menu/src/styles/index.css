@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,37 +6,152 @@
 
 @layer base {
   :root {
-    --brand-dark:   #0A2E12;
-    --brand-accent: #C6FF00;
-    --text-primary: #F5F2EC;
-    --text-muted:   #A8B8A0;
+    --brand-dark:    #0A2E12;
+    --brand-mid:     #0D3615;
+    --brand-accent:  #C6FF00;
+    --text-primary:  #F5F2EC;
+    --text-muted:    #A8B8A0;
+    --text-faint:    #6B8F6E;
+    --border:        rgba(198,255,0,0.08);
   }
 
-  html { scroll-behavior: smooth; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
 
   body {
-    background-color: #0A2E12;
-    color: #F5F2EC;
+    background-color: var(--brand-dark);
+    color: var(--text-primary);
     font-family: 'Inter', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 
-  ::-webkit-scrollbar        { width: 4px; }
+  ::selection {
+    background: rgba(198,255,0,0.2);
+    color: var(--text-primary);
+  }
+
+  ::-webkit-scrollbar        { width: 3px; }
   ::-webkit-scrollbar-track  { background: transparent; }
-  ::-webkit-scrollbar-thumb  { background: rgba(198,255,0,0.25); border-radius: 2px; }
+  ::-webkit-scrollbar-thumb  { background: rgba(198,255,0,0.2); border-radius: 2px; }
 }
 
 @layer components {
-  .section-container {
-    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  .container-menu {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
   }
 
-  .accent-underline {
-    @apply relative pb-2;
+  @screen sm  { .container-menu { padding: 0 32px; } }
+  @screen lg  { .container-menu { padding: 0 48px; } }
+
+  .category-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--brand-accent);
   }
 
-  .accent-underline::after {
-    content: '';
-    @apply absolute bottom-0 left-0 h-0.5 w-12 bg-brand-accent;
+  .category-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(32px, 6vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .item-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: default;
+    transition: all 0.2s ease;
+  }
+
+  .item-row:last-child { border-bottom: none; }
+
+  .item-row:hover .item-name {
+    padding-left: 8px;
+    color: #ffffff;
+  }
+
+  .item-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.4;
+    transition: all 0.2s ease;
+    flex: 1;
+  }
+
+  .item-desc {
+    font-size: 12px;
+    color: var(--text-faint);
+    margin-top: 3px;
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  .item-price {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--brand-accent);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .price-variants {
+    display: flex;
+    gap: 20px;
+    flex-shrink: 0;
+  }
+
+  .price-variant {
+    text-align: center;
+  }
+
+  .price-variant-label {
+    font-size: 10px;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .price-variant-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--brand-accent);
+  }
+
+  /* Scrollbar hide for category nav */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+}
+/* Desktop: two-column layout only when banner exists */
+@media (max-width: 1023px) {
+  .category-image-desktop {
+    display: none;
+  }
+
+  .lg-grid-override {
+    grid-template-columns: 1fr !important;
   }
 }

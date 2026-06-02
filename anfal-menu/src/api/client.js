@@ -6,11 +6,17 @@ const client = axios.create({
   headers: { 'Content-Type': 'application/json' },
 })
 
-// Response interceptor — centralised error handling
 client.interceptors.response.use(
-  (res) => res.data.data,
+  (res) => {
+    console.log('API RESPONSE >>>', res.config.url)
+    console.log(res.data)
+    return res.data.data
+  },
   (err) => {
-    const message = err.response?.data?.message || 'Something went wrong'
+    console.error('API ERROR >>>', err)
+    const message =
+      err.response?.data?.message ||
+      'Something went wrong'
     return Promise.reject(new Error(message))
   }
 )

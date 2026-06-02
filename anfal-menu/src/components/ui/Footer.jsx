@@ -1,61 +1,105 @@
 export default function Footer({ restaurant }) {
-  const phone = restaurant?.phone
-  const whatsapp = restaurant?.settings?.whatsapp
-  const instagram = restaurant?.settings?.instagram
-  const address = restaurant?.address
-
   return (
-    <footer className="bg-black/30 border-t border-white/5 mt-16 py-10">
-      <div className="section-container text-center space-y-4">
-        <p className="font-display text-lg text-white/80">
-          {restaurant?.name}
-        </p>
-
-        {address && (
-          <p className="text-sm text-white/40">
-            {address}
+    <footer
+      style={{
+        borderTop: '1px solid rgba(198,255,0,0.08)',
+        marginTop: '32px',
+        padding: '40px 0',
+      }}
+    >
+      <div className="container-menu">
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '12px',
+            textAlign: 'center',
+          }}
+        >
+          <p
+            style={{
+              fontFamily: '"Playfair Display", serif',
+              fontSize: '18px',
+              color: 'var(--text-primary)',
+            }}
+          >
+            {restaurant?.name}
           </p>
-        )}
 
-        <div className="flex items-center justify-center gap-6 text-sm">
-          {phone && (
-            <a
-              href={`tel:${phone}`}
-              className="text-white/50 hover:text-brand-accent transition-colors"
+          {restaurant?.address && (
+            <p
+              style={{
+                fontSize: '13px',
+                color: 'var(--text-faint)',
+              }}
             >
-              {phone}
-            </a>
+              {restaurant.address}
+            </p>
           )}
 
-          {whatsapp && (
-            <a
-              href={`https://wa.me/${whatsapp}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/50 hover:text-brand-accent transition-colors"
-            >
-              WhatsApp
-            </a>
-          )}
+          <div
+            style={{
+              display: 'flex',
+              gap: '24px',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+            }}
+          >
+            {restaurant?.phone && (
+              <a
+                href={`tel:${restaurant.phone}`}
+                style={{
+                  fontSize: '13px',
+                  color: 'var(--text-faint)',
+                  textDecoration: 'none',
+                }}
+              >
+                {restaurant.phone}
+              </a>
+            )}
 
-          {instagram && (
-            <a
-              href={`https://instagram.com/${instagram}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/50 hover:text-brand-accent transition-colors"
-            >
-              Instagram
-            </a>
-          )}
+            {restaurant?.settings?.whatsapp && (
+              <a
+                href={`https://wa.me/${restaurant.settings.whatsapp}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  fontSize: '13px',
+                  color: 'var(--text-faint)',
+                  textDecoration: 'none',
+                }}
+              >
+                WhatsApp
+              </a>
+            )}
+
+            {restaurant?.settings?.instagram && (
+              <a
+                href={`https://instagram.com/${restaurant.settings.instagram}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  fontSize: '13px',
+                  color: 'var(--text-faint)',
+                  textDecoration: 'none',
+                }}
+              >
+                Instagram
+              </a>
+            )}
+          </div>
+
+          <p
+            style={{
+              fontSize: '11px',
+              color: 'rgba(107,143,110,0.5)',
+              marginTop: '8px',
+            }}
+          >
+            Digital menu by YourCompany
+          </p>
         </div>
-
-        <p className="text-xs text-white/20 pt-4">
-          Digital menu powered by{" "}
-          <span className="text-white/40">
-            YourCompany
-          </span>
-        </p>
       </div>
     </footer>
   )

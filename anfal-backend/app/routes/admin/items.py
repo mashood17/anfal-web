@@ -1,5 +1,6 @@
 from flask              import Blueprint, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
+from sqlalchemy.orm     import joinedload
 from app.extensions     import db
 from app.models         import MenuItem, ItemPrice, AdminUser
 from app.utils.response import success, error
@@ -18,12 +19,18 @@ def get_restaurant_id():
 @jwt_required()
 def list_items():
     rid = get_restaurant_id()
+
     if not rid:
         return error('Unauthorized', 401)
-    items = (MenuItem.query
-             .filter_by(restaurant_id=rid)
-             .order_by(MenuItem.sort_order)
-             .all())
+
+    items = (
+        MenuItem.query
+        .options(joinedload(MenuItem.prices))
+        .filter_by(restaurant_id=rid)
+        .order_by(MenuItem.sort_order)
+        .all()
+    )
+
     return success([i.to_dict() for i in items])
 
 

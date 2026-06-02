@@ -1,69 +1,81 @@
 import { useEffect, useRef } from 'react'
-import useMenuStore from '@/store/menuStore'
+import { motion }            from 'framer-motion'
+import useMenuStore          from '@/store/menuStore'
 
 export default function CategoryNav({ categories }) {
-  const activeCategoryId = useMenuStore((s) => s.activeCategoryId)
+  const activeCategoryId    = useMenuStore((s) => s.activeCategoryId)
   const setActiveCategoryId = useMenuStore((s) => s.setActiveCategoryId)
-  const navRef = useRef(null)
+  const navRef              = useRef(null)
 
-  // Intersection Observer: auto-highlight active category on scroll
+  // IntersectionObserver — auto highlight on scroll
   useEffect(() => {
     const observers = []
-
     categories.forEach((cat) => {
-      const el = document.getElementById(`category-${cat.id}`)
+      const el = document.getElementById(`cat-${cat.id}`)
       if (!el) return
-
       const obs = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) setActiveCategoryId(cat.id)
-        },
-        { rootMargin: '-30% 0px -60% 0px', threshold: 0 }
+        ([entry]) => { if (entry.isIntersecting) setActiveCategoryId(cat.id) },
+        { rootMargin: '-20% 0px -70% 0px', threshold: 0 }
       )
       obs.observe(el)
       observers.push(obs)
     })
-
     return () => observers.forEach((o) => o.disconnect())
   }, [categories, setActiveCategoryId])
 
-  // Auto-scroll active pill into view on mobile
+  // Scroll active pill into view
   useEffect(() => {
     if (!activeCategoryId || !navRef.current) return
-    const activeBtn = navRef.current.querySelector(`[data-id="${activeCategoryId}"]`)
-    activeBtn?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+    const btn = navRef.current.querySelector(`[data-cat="${activeCategoryId}"]`)
+    btn?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
   }, [activeCategoryId])
 
   const scrollTo = (id) => {
-    document.getElementById(`category-${id}`)?.scrollIntoView({ behavior: 'smooth' })
+    document.getElementById(`cat-${id}`)?.scrollIntoView({ behavior: 'smooth' })
+    setActiveCategoryId(id)
   }
 
   return (
     <nav
       ref={navRef}
-      data-menu-start
-      className="flex gap-1 overflow-x-auto py-3 scrollbar-hide 
-                 sm:justify-center sm:flex-wrap"
-      aria-label="Menu categories"
+      className="scrollbar-hide"
+      style={{
+        display: 'flex',
+        gap: '4px',
+        overflowX: 'auto',
+        padding: '12px 0 10px',
+      }}
     >
       {categories.map((cat) => {
         const isActive = cat.id === activeCategoryId
         return (
-          <button
+          <motion.button
             key={cat.id}
-            data-id={cat.id}
+            data-cat={cat.id}
             onClick={() => scrollTo(cat.id)}
-            className={`
-              shrink-0 px-4 py-1.5 rounded-full text-xs font-body font-medium
-              tracking-wide transition-all duration-200
-              ${isActive
-                ? 'bg-brand-accent text-brand-dark'
-                : 'text-white/60 hover:text-white border border-white/10 hover:border-white/30'
-              }
-            `}
+            whileTap={{ scale: 0.95 }}
+            style={{
+              flexShrink: 0,
+              padding: '6px 14px',
+              borderRadius: '100px',
+              fontSize: '12px',
+              fontWeight: isActive ? 600 : 400,
+              fontFamily: 'Inter, sans-serif',
+              letterSpacing: '0.02em',
+              border: isActive
+                ? '1px solid #C6FF00'
+                : '1px solid rgba(198,255,0,0.15)',
+              backgroundColor: isActive
+                ? 'rgba(198,255,0,0.12)'
+                : 'transparent',
+              color: isActive ? '#C6FF00' : 'var(--text-faint)',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              whiteSpace: 'nowrap',
+            }}
           >
             {cat.name}
-          </button>
+          </motion.button>
         )
       })}
     </nav>
