@@ -12,6 +12,7 @@ import SearchResults   from '@/components/search/SearchResults'
 import Footer          from '@/components/ui/Footer'
 import ScrollToTop     from '@/components/ui/ScrollToTop'
 import MenuHeader      from '@/components/menu/MenuHeader'
+import ItemModal       from '@/components/menu/ItemModal'
 
 export default function MenuPage({ slug: slugProp }) {
   const { slug: slugParam } = useParams()
@@ -68,6 +69,7 @@ export default function MenuPage({ slug: slugProp }) {
 
       <Footer restaurant={restaurant} />
       <ScrollToTop />
+      <ItemModal />
     </div>
   )
 }

@@ -1,13 +1,23 @@
 import { motion } from 'framer-motion'
 import { formatSinglePrice } from '@/utils/formatPrice'
+import useMenuStore from '@/store/menuStore'
 
 export default function MenuItemRow({ item }) {
+  const openModal = useMenuStore((s) => s.openModal)
+
   const prices    = item.prices || []
   const isSingle  = prices.length === 1
   const isMulti   = prices.length > 1
 
   return (
-    <div className="item-row">
+    <div
+      className="item-row"
+      onClick={() => openModal(item)}
+      style={{ cursor: 'pointer' }}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => e.key === 'Enter' && openModal(item)}
+    >
       {/* Left block: dot + name + description */}
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>

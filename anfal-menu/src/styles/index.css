@@ -155,3 +155,18 @@
     grid-template-columns: 1fr !important;
   }
 }
+
+@media (min-width: 640px) {
+  .modal-desktop-override {
+    bottom: auto !important;
+    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translate(-50%, -50%) !important;
+    width: 100% !important;
+    max-width: 480px !important;
+    border-radius: 20px !important;
+    border: 1px solid rgba(198,255,0,0.12) !important;
+    max-height: 85vh !important;
+  }
+}

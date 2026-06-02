@@ -1,8 +1,7 @@
 import { useRef }       from 'react'
-import { motion,
-         useInView }    from 'framer-motion'
+import { motion, useInView }    from 'framer-motion'
 import MenuItemRow      from './MenuItemRow'
-import { imageUrl }     from '@/utils/imageUrl'
+import { categoryImageUrl } from '@/utils/imageUrl'
 
 const itemVariants = {
   hidden:  { opacity: 0, y: 10 },
@@ -111,7 +110,7 @@ function CategoryImage({ category }) {
       }}
     >
       <img
-        src={imageUrl(category.banner)}
+        src={categoryImageUrl(category.banner)}
         alt={category.name}
         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         loading="lazy"
