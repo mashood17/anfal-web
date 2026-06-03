@@ -6,7 +6,6 @@ export default function CategoryForm({ initial, onSave, onClose, saving }) {
     defaultValues: {
       name:        initial?.name        || '',
       description: initial?.description || '',
-      sort_order:  initial?.sort_order  || 0,
       banner:      initial?.banner      || null,
     },
   })
@@ -74,14 +73,6 @@ export default function CategoryForm({ initial, onSave, onClose, saving }) {
               {...register('description')}
               placeholder="e.g. Traditional Arabian Rice Experience"
               style={inputStyle}
-            />
-          </Field>
-
-          <Field label="Sort Order">
-            <input
-              type="number"
-              {...register('sort_order', { valueAsNumber: true })}
-              style={{ ...inputStyle, maxWidth: '120px' }}
             />
           </Field>
 

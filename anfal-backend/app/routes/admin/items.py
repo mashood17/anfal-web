@@ -98,6 +98,20 @@ def update_item(item_id):
     db.session.commit()
     return success(item.to_dict())
 
+@bp.route('/reorder', methods=['POST'])
+@jwt_required()
+def reorder_items():
+    rid   = get_restaurant_id()
+    body  = request.get_json()
+    order = body.get('order', [])  # [{ id, sort_order }]
+
+    for item in order:
+        mi = MenuItem.query.filter_by(id=item['id'], restaurant_id=rid).first()
+        if mi:
+            mi.sort_order = item['sort_order']
+
+    db.session.commit()
+    return success({ 'updated': len(order) })
 
 @bp.route('/<item_id>', methods=['DELETE'])
 @jwt_required()

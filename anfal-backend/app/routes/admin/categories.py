@@ -59,6 +59,29 @@ def update_category(cat_id):
     db.session.commit()
     return success(cat.to_dict())
 
+@bp.route('/reorder', methods=['POST'])
+@jwt_required()
+def reorder_categories():
+    rid = get_restaurant_id()
+    body = request.get_json()
+
+    order = body.get('order', [])
+
+    for item in order:
+        cat = Category.query.filter_by(
+            id=item['id'],
+            restaurant_id=rid
+        ).first()
+
+        if cat:
+            cat.sort_order = item['sort_order']
+
+    db.session.commit()
+
+    return success({
+        'updated': len(order)
+    })
+
 
 @bp.route('/<cat_id>', methods=['DELETE'])
 @jwt_required()

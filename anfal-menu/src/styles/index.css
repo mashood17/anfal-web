@@ -74,8 +74,8 @@
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    gap: 16px;
-    padding: 14px 0;
+    gap: 8px;
+    padding: 12px 0;
     border-bottom: 1px solid var(--border);
     cursor: default;
     transition: all 0.2s ease;
@@ -168,5 +168,12 @@
     border-radius: 20px !important;
     border: 1px solid rgba(198,255,0,0.12) !important;
     max-height: 85vh !important;
+  }
+}
+/* Tighter category sections on mobile */
+@media (max-width: 639px) {
+  .category-section-gap {
+    padding-bottom: 32px !important;
+    margin-bottom: 32px !important;
   }
 }

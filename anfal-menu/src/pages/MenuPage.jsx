@@ -13,6 +13,7 @@ import Footer          from '@/components/ui/Footer'
 import ScrollToTop     from '@/components/ui/ScrollToTop'
 import MenuHeader      from '@/components/menu/MenuHeader'
 import ItemModal       from '@/components/menu/ItemModal'
+import DietFilter from '@/components/menu/DietFilter'
 
 export default function MenuPage({ slug: slugProp }) {
   const { slug: slugParam } = useParams()
@@ -23,6 +24,12 @@ export default function MenuPage({ slug: slugProp }) {
   const { data: items = [] }            = useMenuItems(restaurant?.id)
   const searchQuery                     = useMenuStore((s) => s.searchQuery)
   const searchResults                   = useSearch(items, categories)
+  const dietFilter                      = useMenuStore((s) => s.dietFilter)
+  const setDietFilter                   = useMenuStore((s) => s.setDietFilter)
+  const filteredItems =
+    dietFilter === 'all'
+      ? items
+      : items.filter((i) => i.food_type === dietFilter)
 
   if (isLoading) return <PageLoader />
 
@@ -43,6 +50,14 @@ export default function MenuPage({ slug: slugProp }) {
       >
         <div className="container-menu">
           <CategoryNav categories={categories} />
+
+          <div className="py-2">
+            <DietFilter
+              active={dietFilter}
+              onChange={setDietFilter}
+            />
+          </div>
+
           <div className="pb-2">
             <SearchBar />
           </div>
@@ -59,7 +74,7 @@ export default function MenuPage({ slug: slugProp }) {
               <CategorySection
                 key={cat.id}
                 category={cat}
-                items={items.filter((i) => i.category_id === cat.id)}
+                items={filteredItems.filter((i) => i.category_id === cat.id)}
                 index={index}
               />
             ))}

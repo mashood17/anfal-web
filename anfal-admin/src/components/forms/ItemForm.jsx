@@ -13,7 +13,6 @@ export default function ItemForm({ initial, categories, onSave, onClose, saving 
       food_type:   initial?.food_type   || 'non_veg',
       badge:       initial?.badge       || '',
       image:       initial?.image       || null,
-      sort_order:  initial?.sort_order  || 0,
       prices:      initial?.prices?.length
         ? initial.prices
         : [{ label: 'regular', price: '' }],
@@ -60,6 +59,13 @@ export default function ItemForm({ initial, categories, onSave, onClose, saving 
 
         <form onSubmit={handleSubmit(onSubmit)} style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
 
+        <div>
+                <label style={labelStyle}>Category *</label>
+                <select {...register('category_id', { required: true })} style={inputStyle}>
+                  {categories.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
+                </select>
+              </div>
+
           {/* Name */}
           <div>
             <label style={labelStyle}>Name *</label>
@@ -72,22 +78,16 @@ export default function ItemForm({ initial, categories, onSave, onClose, saving 
             <textarea {...register('description')} rows={2} placeholder="Short description..." style={{ ...inputStyle, resize: 'vertical' }} />
           </div>
 
-          {/* Category + Food Type */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-            <div>
-              <label style={labelStyle}>Category *</label>
-              <select {...register('category_id', { required: true })} style={inputStyle}>
-                {categories.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
-              </select>
-            </div>
-            <div>
-              <label style={labelStyle}>Food Type</label>
-              <select {...register('food_type')} style={inputStyle}>
-                {FOOD_TYPES.map((t) => (
-                  <option key={t} value={t}>{t === 'veg' ? 'Vegetarian' : 'Non-Vegetarian'}</option>
-                ))}
-              </select>
-            </div>
+          {/* Food Type */}
+          <div>
+            <label style={labelStyle}>Food Type</label>
+            <select {...register('food_type')} style={inputStyle}>
+              {FOOD_TYPES.map((t) => (
+                <option key={t} value={t}>
+                  {t === 'veg' ? 'Vegetarian' : 'Non-Vegetarian'}
+                </option>
+              ))}
+            </select>
           </div>
 
           {/* Badge + Sort */}
@@ -97,10 +97,6 @@ export default function ItemForm({ initial, categories, onSave, onClose, saving 
               <select {...register('badge')} style={inputStyle}>
                 {BADGES.map((b) => <option key={b} value={b}>{b ? b.replace('_', ' ') : 'None'}</option>)}
               </select>
-            </div>
-            <div>
-              <label style={labelStyle}>Sort Order</label>
-              <input type="number" {...register('sort_order', { valueAsNumber: true })} style={inputStyle} />
             </div>
           </div>
 

@@ -1,13 +1,11 @@
-import { motion } from 'framer-motion'
-import { formatSinglePrice } from '@/utils/formatPrice'
 import useMenuStore from '@/store/menuStore'
 
 export default function MenuItemRow({ item }) {
   const openModal = useMenuStore((s) => s.openModal)
-
   const prices    = item.prices || []
   const isSingle  = prices.length === 1
   const isMulti   = prices.length > 1
+  
 
   return (
     <div
@@ -18,63 +16,56 @@ export default function MenuItemRow({ item }) {
       tabIndex={0}
       onKeyDown={(e) => e.key === 'Enter' && openModal(item)}
     >
-      {/* Left block: dot + name + description */}
+      {/* Left: dot + name + description — NO badge */}
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           {item.food_type && <FoodDot type={item.food_type} />}
           <span className="item-name">{item.name}</span>
-          {item.badge === 'best_seller' && <BestSellerStar />}
         </div>
         {item.description && (
           <p className="item-desc">{item.description}</p>
         )}
       </div>
 
-      {/* Right block: price(s) */}
+      {/* Right: price */}
       {isSingle && (
         <span className="item-price">
-          ₹{formatPrice(prices[0].price)}
+          ₹{Number(item.prices[0].price).toLocaleString('en-IN')}
         </span>
       )}
 
       {isMulti && (
-        <div style={{ flexShrink: 0, textAlign: 'right' }}>
-          {prices.map((p) => (
+        <div
+          style={{
+            flexShrink: 0,
+            textAlign: 'center',
+            minWidth: '140px',
+          }}
+        >
+            
+
+            {/* Prices */}
             <div
-              key={p.label}
               style={{
                 display: 'flex',
-                alignItems: 'baseline',
-                justifyContent: 'flex-end',
-                gap: '8px',
-                lineHeight: '1.8',
+                justifyContent: 'center',
+                gap: '20px',
               }}
             >
-              <span
-                style={{
-                  fontSize: '11px',
-                  color: 'var(--text-faint)',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.08em',
-                  fontWeight: 500,
-                  minWidth: '16px',
-                }}
-              >
-                {p.label}
-              </span>
-              <span
-                style={{
-                  fontSize: '14px',
-                  fontWeight: 600,
-                  color: 'var(--brand-accent)',
-                  minWidth: '48px',
-                  textAlign: 'right',
-                }}
-              >
-                ₹{formatPrice(p.price)}
-              </span>
+              {prices.map((p) => (
+                <span
+                  key={`price-${p.label}`}
+                  style={{
+                    fontSize: '14px',
+                    fontWeight: 600,
+                    color: 'var(--brand-accent)',
+                    minWidth: '38px',
+                  }}
+                >
+                  ₹{Number(p.price).toLocaleString('en-IN')}
+                </span>
+              ))}
             </div>
-          ))}
         </div>
       )}
     </div>
@@ -94,27 +85,4 @@ function FoodDot({ type }) {
       title={type === 'veg' ? 'Vegetarian' : 'Non-Vegetarian'}
     />
   )
-}
-
-function BestSellerStar() {
-  return (
-    <span
-      style={{
-        fontSize: '9px', fontWeight: 600,
-        color: '#C6FF00',
-        border: '1px solid rgba(198,255,0,0.3)',
-        borderRadius: '100px',
-        padding: '1px 6px',
-        letterSpacing: '0.08em',
-        textTransform: 'uppercase',
-        flexShrink: 0,
-      }}
-    >
-      ★
-    </span>
-  )
-}
-
-function formatPrice(price) {
-  return Number(price).toLocaleString('en-IN')
 }
