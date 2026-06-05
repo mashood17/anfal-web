@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: #0A2E12;
+    color: #F5F2EC;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: rgba(198,255,0,0.2);
+    color: #F5F2EC;
+  }
+
+  ::-webkit-scrollbar        { width: 4px; }
+  ::-webkit-scrollbar-track  { background: transparent; }
+  ::-webkit-scrollbar-thumb  { background: rgba(198,255,0,0.25); border-radius: 2px; }
+}
+
+@layer components {
+  .section-container {
+    @apply w-full max-w-6xl mx-auto px-5 sm:px-8 lg:px-12;
+  }
+
+  .section-padding {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #C6FF00;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    color: #F5F2EC;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  .accent-line {
+    width: 40px;
+    height: 2px;
+    background-color: #C6FF00;
+    border-radius: 1px;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    background-color: #C6FF00;
+    color: #0A2E12;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .btn-primary:hover {
+    background-color: #d4ff33;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(198,255,0,0.25);
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 28px;
+    background-color: transparent;
+    color: #F5F2EC;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    border-radius: 4px;
+    border: 1px solid rgba(245,242,236,0.4);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .btn-outline:hover {
+    border-color: #C6FF00;
+    color: #C6FF00;
+  }
+}
