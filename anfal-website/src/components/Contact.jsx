@@ -330,17 +330,19 @@ export default function Contact() {
             </div>
 
             {/* ── Map iframe container ── */}
-            <div style={{
-              borderRadius: '16px',
-              overflow: 'hidden',
-              border: '1px solid rgba(198,255,0,0.12)',
-              position: 'relative',
-              /* Responsive: taller on mobile, 4:3 on desktop */
-              aspectRatio: '4/3',
-              minHeight: '280px',
-              backgroundColor: '#0D3615',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.35)',
-            }}>
+           <div
+              style={{
+                borderRadius: '16px',
+                overflow: 'hidden',
+                border: '1px solid rgba(198,255,0,0.12)',
+                position: 'relative',
+                aspectRatio: '4/3',
+                minHeight: '280px',
+                backgroundColor: '#0D3615',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.35)',
+              }}
+              className="contact-map"
+            >
               {/* Subtle top overlay label — mirrors the reference screenshot style */}
               <div style={{
                 position: 'absolute', top: 0, left: 0, right: 0, zIndex: 2,
