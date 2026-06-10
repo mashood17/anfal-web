@@ -240,7 +240,7 @@ export default function Navbar() {
                 WebkitBackdropFilter: 'blur(30px)',
               display: 'flex', flexDirection: 'column',
               borderLeft: '1px solid rgba(255,255,255,0.06)',
-              alignItems: 'center', justifyContent: 'center', paddingTop: '0',
+              alignItems: 'center', justifyContent: 'center', paddingTop: '80px',
               gap: '18px',
               paddingBottom: '40px',
             }}
@@ -277,32 +277,6 @@ export default function Navbar() {
               </motion.a>
             ))}
 
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0  }}
-              transition={{ delay: 0.5, duration: 0.35 }}
-              style={{ marginTop: '24px' }}
-            >
-              <a href={QR_MENU_URL} target="_blank" rel="noopener noreferrer"
-                 style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    padding: '12px 28px',
-                    borderRadius: '999px',
-                    background: '#C6FF00',
-                    color: '#071F0A',
-                    fontSize: '13px',
-                    fontWeight: 700,
-                    letterSpacing: '0.08em',
-                    border: 'none',
-                    textDecoration: 'none',
-                    transition: 'all 0.35s ease',
-                    }}
-                    onClick={() => setMenuOpen(false)}>
-                View Menu →
-              </a>
-            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
