@@ -93,7 +93,7 @@ export default function Contact() {
         style={{
           position: 'relative',
           zIndex: 1,
-          paddingInline: window.innerWidth <= 768 ? '16px' : undefined,
+          paddingInline: window.innerWidth <= 768 ? '24px' : undefined,
         }}
       >
 
