@@ -1,0 +1,24 @@
+[33mc33c1a3[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m Add Anfal restaurant website
+[33mc647e76[m hero section image fix
+[33m717393c[m fix: upload API and Supabase storage configuration
+[33m86524fa[m fix: vercel spa routing
+[33md5fca03[m fix: CORS explicit origins + OPTIONS preflight handler
+[33m647e5da[m chore: production deployment ready
+[33mf9a7cb1[m chore: add production env
+[33mff8492a[m fix: add gunicorn
+[33mcaeb465[m remove invalid uni-watch package
+[33me3b4284[m fix: use python 3.12
+[33m8c10e99[m chore: deployment ready backend
+[33m2a85f6c[m chore: update requirements.txt for deployment
+[33m1856617[m chore: update requirements.txt for deployment
+[33m4fd8191[m feat: production-ready QR menu with hero banners, branding, drag-drop ordering and mobile optimizations
+[33m203844d[m feat: enhance hero section with image slider
+[33m6feb21d[m fix: category drag-and-drop reorder + remove manual sort_order fields
+[33md7678eb[m feat: improve admin panel mobile responsiveness
+[33m9090b73[m feat: add item modal, placeholder images, and category images
+[33m88bc6b1[m fix: optimize menu loading and multi-price layout
+[33mf418d5c[m refactor: replace halal food type with veg/non_veg only
+[33m2fae769[m admin panel fix
+[33m7024e03[m Add root gitignore
+[33m67dc1e6[m Remove environment files from repository
+[33m182aeca[m Initial commit - Flask backend, React admin and Supabase integration

@@ -1,34 +1,37 @@
 export const reviews = [
   {
     id: 1,
-    name: 'Mohammed Ashraf',
+    name: "Faruq blc",
+    avatar: "FB",
     rating: 5,
-    date: 'March 2026',
-    text: 'Absolutely amazing food. The Afghani Mandi was out of this world — perfectly spiced, tender meat, and the rice was fragrant and fluffy. Will definitely be back.',
-    avatar: 'MA',
+    date: "June 2026",
+    text: "I had a wonderful dining experience at Anfal Hotel. The Kabul Mutton Mandi was delicious, perfectly cooked, and full of flavor. The quality of the food and service was excellent."
   },
+
   {
     id: 2,
-    name: 'Priya Nair',
+    name: "Syed Niyaz",
+    avatar: "SN",
     rating: 5,
-    date: 'February 2026',
-    text: 'One of the best restaurants on NH75. The Butter Chicken and Kerala Parotta combo was heavenly. Great ambiance, friendly staff, and very reasonable pricing.',
-    avatar: 'PN',
+    date: "June 2026",
+    text: "Very authentic dishes. Food is superb, especially Arabic and Chinese dishes. Love to visit back again with family and friends."
   },
+
   {
     id: 3,
-    name: 'Suresh Kumar',
+    name: "Rajesh Rao",
+    avatar: "RR",
     rating: 5,
-    date: 'January 2026',
-    text: 'Came here for a family dinner and everyone loved it. The Biriyani is authentic and the portions are generous. The service was quick and polite.',
-    avatar: 'SK',
+    date: "June 2026",
+    text: "Nice ambience, spacious seating and delicious dishes. Plenty of parking and a wonderful dining experience."
   },
+
   {
     id: 4,
-    name: 'Fathima Zahra',
+    name: "Mohammed Suhan",
+    avatar: "MS",
     rating: 5,
-    date: 'April 2026',
-    text: 'The Al Faham Chicken was perfectly grilled and the fresh lime juice was refreshing. Lovely place for families. Highly recommended!',
-    avatar: 'FZ',
-  },
+    date: "June 2026",
+    text: "Best Bukhari Biryani. The taste is really good. There is ample parking space and prayer rooms too."
+  }
 ]

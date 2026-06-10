@@ -1,0 +1,42 @@
+export const specialties = [
+  {
+    id: 1,
+    name:   'Anfal Mutton Kabuli',
+    desc:   'Traditional Afghan-style Kabuli rice layered with tender, slow-cooked mutton, aromatic spices, and rich flavors. A house specialty that showcases authentic Afghan culinary heritage.',
+    price:  'From ₹390',
+    image:  '/images/specialties/s1.jpg',
+    tag:    'Signature Afghan Special',
+  },
+  {
+    id: 2,
+    name:   'Anfal Mutton Bukhari',
+    desc:   'A rich, creamy Afghani preparation with a distinctive spice blend, served over slow-cooked Kabuli rice with caramelised onions and dried fruits.',
+    price:  'From ₹380',
+    image:  '/images/specialties/s2.jpg',
+    tag:    'Chef\'s Recommendation',
+  },
+  {
+    id: 3,
+    name:   'Al Faham Chicken Kabuli',
+    desc:   'Juicy charcoal-grilled Al Faham chicken paired with flavorful Kabuli rice. A perfect fusion of smoky grill notes and traditional Afghan rice preparation.  ',
+    price:  'From ₹276',
+    image:  '/images/specialties/s3.jpg',
+    tag:    'Best Seller',
+  },
+  {
+    id: 4,
+    name:   'Crab Ghee Roast',
+    desc:   'Fresh crab roasted in aromatic ghee and a rich blend of coastal spices. Bold, flavorful, and crafted for seafood lovers seeking something truly special.',
+    price:  'From ₹399',
+    image:  '/images/specialties/s4.jpg',
+    tag:    'Coastal Specialty',
+  },
+  {
+    id: 5,
+    name:   'Butter Chicken',
+    desc:   'Creamy tomato-based curry with tender chicken pieces, finished with butter and aromatic spices for a rich, satisfying experience.',
+    price:  'From ₹240',
+    image:  '/images/specialties/s5.jpg',
+    tag:    'Customer Favorite',
+  },
+]

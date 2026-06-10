@@ -72,8 +72,6 @@ export default function MenuCTA() {
         </p>
         <a
           href={QR_MENU_URL}
-          target="_blank"
-          rel="noopener noreferrer"
           style={{
             display: 'inline-flex',
             alignItems: 'center',
