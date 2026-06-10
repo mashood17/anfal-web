@@ -52,8 +52,8 @@ export default function Cuisines() {
         backgroundColor: '#081A0A',
         position: 'relative',
         overflow: 'hidden',
-        paddingTop:    'clamp(64px, 8vw, 100px)',
-        paddingBottom: 'clamp(64px, 8vw, 100px)',
+        paddingTop: isMobile ? '5px' : 'clamp(44px, 5vw, 72px)',
+        paddingBottom: isMobile ? '5px' : 'clamp(44px, 5vw, 72px)',  
       }}
     >
       {/* Subtle texture gradient */}
@@ -115,7 +115,7 @@ export default function Cuisines() {
               marginBottom: '16px',
             }}
           >
-            Signature Cuisines
+            Signature <span style={{ color: '#C6FF00', }}>Cuisines</span>
           </motion.h2>
 
           <motion.p
@@ -303,7 +303,10 @@ function CuisineRow({ name, subtitle, desc, dishes, image, ordinal, flip, last, 
       {isMobile ? (
         <>
           {content}
-          {imageEl}
+
+          <div style={{ marginTop: '18px' }}>
+            {imageEl}
+          </div>
         </>
       ) : flip ? (
         <>

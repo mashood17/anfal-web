@@ -104,13 +104,14 @@ export default function Specialties() {
             }}
           />
 
-          <div style={{
-            display: 'flex',
-            alignItems: 'flex-end',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: '16px',
-          }}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '18px',
+              alignItems: 'flex-start',
+            }}
+          >
             <motion.h2
               initial={{ opacity: 0, y: 18 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -125,24 +126,24 @@ export default function Specialties() {
               }}
             >
               Our{' '}
-              <span style={{ color: '#C6FF00', fontStyle: 'italic' }}>Specialties</span>
+              <span style={{ color: '#C6FF00'}}>Specialties</span>
             </motion.h2>
 
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={inView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.5, delay: 0.18 }}
-              style={{
-                fontSize: 'clamp(13px, 1.4vw, 15px)',
-                color: 'rgba(245,242,236,0.4)',
-                maxWidth: '380px',
-                lineHeight: 1.75,
-                flexShrink: 0,
-              }}
+           <motion.p
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.5, delay: 0.18 }}
+            style={{
+              fontSize: 'clamp(13px, 1.4vw, 15px)',
+              color: 'rgba(245,242,236,0.45)',
+              maxWidth: isMobile ? '100%' : '420px',
+              lineHeight: 1.8,
+              marginTop: isMobile ? '4px' : '0',
+            }}
             >
-              Signature dishes crafted by our chefs — each one a story
-              of authentic flavours and premium ingredients.
-            </motion.p>
+            Signature dishes crafted by our chefs — each one a story
+            of authentic flavours and premium ingredients.
+            </motion.p> 
           </div>
         </div>
 
@@ -330,13 +331,7 @@ export default function Specialties() {
               </div>
             )}
 
-            {/* Mobile prev/next */}
-            {isMobile && (
-              <div style={{ display: 'flex', gap: '10px' }}>
-                <NavBtn onClick={prev} label="Previous"><ChevLeft /></NavBtn>
-                <NavBtn onClick={next} label="Next"><ChevRight /></NavBtn>
-              </div>
-            )}
+            
           </div>
         </motion.div>
       </div>

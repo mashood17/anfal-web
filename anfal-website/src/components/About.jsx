@@ -55,7 +55,7 @@ export default function About() {
           display: 'grid',
           gridTemplateColumns: isMobile ? '1fr' : '46% 1fr',
           gridTemplateAreas: isMobile ? '"text" "image"' : '"image text"',
-          gap: isMobile ? '0' : 'clamp(48px, 6vw, 88px)',
+          gap: isMobile ? '32px' : 'clamp(48px, 6vw, 88px)',
           alignItems: 'center',
         }}>
 
@@ -174,7 +174,7 @@ export default function About() {
               marginBottom: '24px',
             }}>
               Crafted with Passion,<br />
-              <span style={{ color: '#C6FF00', fontStyle: 'italic' }}>Served with Pride</span>
+              <span style={{ color: '#C6FF00', }}>Served with Pride</span>
             </h2>
 
             {/* Body copy */}
