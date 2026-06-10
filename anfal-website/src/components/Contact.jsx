@@ -88,7 +88,14 @@ export default function Contact() {
         background: 'radial-gradient(ellipse 70% 50% at 80% 50%, rgba(198,255,0,0.03) 0%, transparent 70%)',
       }} />
 
-      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+      <div
+        className="container"
+        style={{
+          position: 'relative',
+          zIndex: 1,
+          paddingInline: window.innerWidth <= 768 ? '16px' : undefined,
+        }}
+      >
 
         {/* Header */}
         <motion.div
