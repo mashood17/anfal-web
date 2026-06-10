@@ -92,8 +92,8 @@ export default function Contact() {
         className="container"
         style={{
           position: 'relative',
+          justifyContent: 'center',
           zIndex: 1,
-          paddingInline: window.innerWidth <= 768 ? '24px' : undefined,
         }}
       >
 
@@ -331,18 +331,18 @@ export default function Contact() {
 
             {/* ── Map iframe container ── */}
            <div
-              style={{
-                borderRadius: '16px',
-                overflow: 'hidden',
-                border: '1px solid rgba(198,255,0,0.12)',
-                position: 'relative',
-                aspectRatio: '4/3',
-                minHeight: '280px',
-                backgroundColor: '#0D3615',
-                boxShadow: '0 8px 32px rgba(0,0,0,0.35)',
-              }}
-              className="contact-map"
-            >
+            style={{
+              borderRadius: '16px',
+              overflow: 'hidden',
+              border: '1px solid rgba(198,255,0,0.12)',
+              position: 'relative',
+              aspectRatio: '4/3',
+              minHeight: '280px',
+              backgroundColor: '#0D3615',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.35)',
+            }}
+            className="contact-map"
+          >
               {/* Subtle top overlay label — mirrors the reference screenshot style */}
               <div style={{
                 position: 'absolute', top: 0, left: 0, right: 0, zIndex: 2,
