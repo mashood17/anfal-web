@@ -7,6 +7,7 @@ import Gallery     from '@/components/Gallery'
 import Reviews     from '@/components/Reviews'
 import Contact     from '@/components/Contact'
 import Footer      from '@/components/Footer'
+import MenuCTA      from '@/components/MenuCTA'
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
       <main>
         <Hero />
         <Specialties />
+        <MenuCTA/>
         <About />
         <Cuisines />
         <Gallery />
