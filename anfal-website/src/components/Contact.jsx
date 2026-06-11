@@ -124,7 +124,7 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.12 }}
             style={{ marginBottom: '16px' }}
           >
-            Find Anfal Restaurant
+            Experience<span style={{ color: '#C6FF00',  }}> Anfal Restaurant</span>
           </motion.h2>
 
           <motion.p className="body-text"

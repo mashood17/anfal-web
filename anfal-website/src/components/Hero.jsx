@@ -135,7 +135,7 @@ export default function Hero() {
               textShadow: '0 4px 30px rgba(0,0,0,0.35)',
             }}
           >
-            Anfal<br />Restaurant
+            Anfal<br /><span style={{ color: '#C6FF00',  }}>Restaurant</span>
           </motion.h1>
 
           <motion.p
