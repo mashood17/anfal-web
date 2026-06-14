@@ -89,7 +89,7 @@ export default function Reviews() {
               transition={{ duration: 0.5 }}
               style={{
                 display: 'block',
-                fontSize: '10px', fontWeight: 700,
+                fontSize: '13px', fontWeight: 700,
                 letterSpacing: '0.18em', textTransform: 'uppercase',
                 color: '#C6FF00', marginBottom: '14px',
               }}
@@ -187,7 +187,7 @@ export default function Reviews() {
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.4, delay: 0.4 }}
             style={{
-              fontSize: '10px', letterSpacing: '0.12em',
+              fontSize: '11px', letterSpacing: '0.12em',
               textTransform: 'uppercase',
               color: 'rgba(245,242,236,0.22)',
               textAlign: 'center',

@@ -99,7 +99,7 @@ export default function Gallery() {
               transition={{ duration: 0.5 }}
               style={{
                 display: 'block',
-                fontSize: '10px',
+                fontSize: '13px',
                 fontWeight: 700,
                 letterSpacing: '0.18em',
                 textTransform: 'uppercase',
@@ -210,7 +210,7 @@ export default function Gallery() {
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.4, delay: 0.4 }}
             style={{
-              fontSize: '10px',
+              fontSize: '11px',
               letterSpacing: '0.12em',
               textTransform: 'uppercase',
               color: 'rgba(245,242,236,0.25)',

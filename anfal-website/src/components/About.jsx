@@ -154,7 +154,7 @@ export default function About() {
             {/* Eyebrow */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '18px' }}>
               <span style={{
-                fontSize: '10px', fontWeight: 700,
+                fontSize: '13px', fontWeight: 700,
                 letterSpacing: '0.18em', textTransform: 'uppercase',
                 color: '#C6FF00',
               }}>

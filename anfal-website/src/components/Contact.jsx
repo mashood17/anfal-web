@@ -106,7 +106,7 @@ export default function Contact() {
             initial={{ opacity: 0, y: 10 }}
             animate={headerIn ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
-            style={{ display: 'block', marginBottom: '14px' }}
+            style={{ display: 'block', marginBottom: '14px', fontSize: '13px', }}
           >
             Visit Us
           </motion.span>

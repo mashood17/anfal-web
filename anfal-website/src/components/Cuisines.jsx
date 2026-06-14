@@ -52,7 +52,7 @@ export default function Cuisines() {
         backgroundColor: '#081A0A',
         position: 'relative',
         overflow: 'hidden',
-        paddingTop: isMobile ? '5px' : 'clamp(44px, 5vw, 72px)',
+        paddingTop: isMobile ? '30px' : 'clamp(44px, 5vw, 72px)',
         paddingBottom: isMobile ? '5px' : 'clamp(44px, 5vw, 72px)',  
       }}
     >
@@ -79,7 +79,7 @@ export default function Cuisines() {
             transition={{ duration: 0.5 }}
             style={{
               display: 'block',
-              fontSize: '10px', fontWeight: 700,
+              fontSize: '13px', fontWeight: 700,
               letterSpacing: '0.18em', textTransform: 'uppercase',
               color: '#C6FF00', marginBottom: '14px',
             }}

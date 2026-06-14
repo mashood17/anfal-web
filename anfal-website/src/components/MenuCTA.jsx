@@ -83,7 +83,7 @@ export default function MenuCTA() {
           >
             <div style={{ width: '24px', height: '1px', backgroundColor: 'rgba(198,255,0,0.5)' }} />
             <span style={{
-              fontSize: '10px', fontWeight: 700,
+              fontSize: '13px', fontWeight: 700,
               letterSpacing: '0.18em', textTransform: 'uppercase',
               color: '#C6FF00',
             }}>
